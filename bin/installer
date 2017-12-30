@@ -1,0 +1,48 @@
+#!/bin/sh
+set -ex
+
+# Check environment
+
+fail() {
+    echo 1>&2 "$1"
+    echo 1>&2 "Usage: $(basename "$0") [install|uninstall]"
+    exit 1
+}
+
+if [ "$#" -lt 1 ] ; then
+    fail "Invalid number of arguments."
+fi
+
+if [ "$(uname)" != "Linux" ] ; then
+    fail "Impossible to prepare another operating system than Linux."
+fi
+
+# Run installer
+
+case "$1" in
+    install )
+        export $(curl --location "https://github.com/timonier/version-lister/raw/generated/_/webstorm/latest" | xargs)
+        WEBSTORM_CONFIG_FOLDER_PREVIOUS="$(ls --all "${HOME}" | grep ".WebStorm" | tail --lines 1)"
+        WEBSTORM_CONFIG_FOLDER_NEW=".WebStorm${WEBSTORM_MAJOR_VERSION}"
+
+        if [ -n "${WEBSTORM_CONFIG_FOLDER_PREVIOUS}" ] ; then
+            if [ ${WEBSTORM_CONFIG_FOLDER_PREVIOUS} != "${WEBSTORM_CONFIG_FOLDER_NEW}" ] ; then
+                mv "${HOME}/${WEBSTORM_CONFIG_FOLDER_PREVIOUS}" "${HOME}/${WEBSTORM_CONFIG_FOLDER_NEW}"
+            fi
+            git -C "${HOME}/${WEBSTORM_CONFIG_FOLDER_NEW}/config" fetch origin
+            git -C "${HOME}/${WEBSTORM_CONFIG_FOLDER_NEW}/config" checkout --force origin/master
+        else
+            mkdir "${HOME}/${WEBSTORM_CONFIG_FOLDER_NEW}"
+            git clone "https://github.com/mauchede/webstorm-config" "${HOME}/${WEBSTORM_CONFIG_FOLDER_NEW}/config"
+        fi
+
+        rm --force --recursive $(ls --all "${HOME}" | grep ".WebStorm" | grep --invert-match "${WEBSTORM_CONFIG_FOLDER_NEW}")
+    ;;
+
+    uninstall )
+        rm --force --recursive $(ls --all "${HOME}" | grep ".WebStorm")
+    ;;
+
+    * )
+        fail "Argument \"$1\" is invalid."
+esac

@@ -4,22 +4,15 @@ Global configuration for WebStorm
 
 ## Installation
 
-Put content of this project into WebStorm `config` folder:
+Location of the WebStorm folder is depending on OS and WebStorm version. See section [Project and IDE settings](https://www.jetbrains.com/help/webstorm/project-and-ide-settings.html) for more information about the configuration directory structure.
 
-```bash
-# Go to WebStorm folder
-cd ~/.WebStorm2017.1
+Linux users can use the [installer](https://github.com/mauchede/webstorm-config/blob/master/bin/installer):
 
-# Remove the current config folder
-rm -rf config
-
-# Use this project as config folder
-git clone "https://github.com/mauchede/webstorm-config"
+```sh
+curl --location "https://github.com/mauchede/webstorm-config/raw/master/bin/installer" | sh -s -- install
 ```
 
-__Note 1__: Make sure WebStorm is not running, or it will overwrite the changed files before shutting down.
-
-__Note 2__: Location of the WebStorm folder is depending on OS and WebStorm version. See section [Project and IDE settings](https://www.jetbrains.com/help/webstorm/project-and-ide-settings.html) for more information about the configuration directory structure.
+__Note__: Make sure WebStorm is not running, or it will overwrite the changed files before shutting down.
 
 ## Contributing
 
@@ -32,3 +25,4 @@ __Note 2__: Location of the WebStorm folder is depending on OS and WebStorm vers
 ## Links
 
 * [project and ide settings](https://www.jetbrains.com/webstorm/help/project-and-ide-settings.html)
+* [timonier/version-lister](https://github.com/timonier/version-lister)
