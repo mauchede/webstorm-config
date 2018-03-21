@@ -25,4 +25,3 @@ __Note__: Make sure WebStorm is not running, or it will overwrite the changed fi
 ## Links
 
 * [project and ide settings](https://www.jetbrains.com/webstorm/help/project-and-ide-settings.html)
-* [timonier/version-lister](https://github.com/timonier/version-lister)
