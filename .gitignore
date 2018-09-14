@@ -13,3 +13,4 @@
 /system
 *.key
 *.token
+*.vmoptions
