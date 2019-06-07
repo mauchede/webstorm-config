@@ -18,7 +18,7 @@ bin/installer install
 
 # Use remote installation
 
-curl --location "https://github.com/mauchede/webstorm-config/raw/linux/xubuntu/bin/installer" | sh -s -- install
+curl --location "https://github.com/mauchede/webstorm-config/raw/linux/xubuntu/bin/installer" | bash -s -- install
 ```
 
 __Note__: Make sure WebStorm is not running, or it will overwrite the changed files before shutting down.
@@ -35,7 +35,7 @@ bin/installer install
 
 # Use remote installation
 
-curl --location "https://github.com/mauchede/webstorm-config/raw/mac-os/darwin/bin/installer" | sh -s -- install
+curl --location "https://github.com/mauchede/webstorm-config/raw/mac-os/darwin/bin/installer" | bash -s -- install
 ```
 
 __Note__: Make sure WebStorm is not running, or it will overwrite the changed files before shutting down.
